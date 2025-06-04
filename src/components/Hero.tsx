@@ -1,8 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import { heroData } from '../data/heroData';
+import React, { useEffect, useRef } from "react";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { heroData } from "../data/heroData";
+
+type Star = {
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  speed: number;
+};
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -13,7 +21,7 @@ const Hero = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Set canvas size
@@ -38,9 +46,9 @@ const Hero = () => {
       if (!ctx || !canvas) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      
+
+      const isDarkMode = document.documentElement.classList.contains("dark");
+
       stars.current.forEach((star) => {
         star.y += star.speed;
         if (star.y > canvas.height) {
@@ -60,7 +68,9 @@ const Hero = () => {
           star.y += Math.sin(angle) * push;
         }
 
-        ctx.fillStyle = isDarkMode ? `rgba(255, 255, 255, ${star.opacity})` : `rgba(0, 0, 0, ${star.opacity * 0.7})`;
+        ctx.fillStyle = isDarkMode
+          ? `rgba(255, 255, 255, ${star.opacity})`
+          : `rgba(0, 0, 0, ${star.opacity * 0.7})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
@@ -85,12 +95,12 @@ const Hero = () => {
     initStars();
     animate();
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -99,11 +109,11 @@ const Hero = () => {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
-        style={{ background: 'transparent' }}
+        style={{ background: "transparent" }}
       />
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
         <img
-          src={heroData.profilePicture}
+          src={heroData.profilePicture.startsWith('/public/') ? heroData.profilePicture.replace('/public/', '/') : heroData.profilePicture}
           alt={heroData.name}
           className="mb-8 h-48 w-48 rounded-full border-4 border-primary object-cover shadow-lg"
         />
@@ -118,7 +128,12 @@ const Hero = () => {
         </p>
         <div className="mb-12 flex space-x-4">
           <div className="relative group">
-            <Button variant="outline" size="icon" className="rounded-full group-hover:tooltip" aria-label="Github">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full group-hover:tooltip"
+              aria-label="Github"
+            >
               <a
                 href={heroData.contact.github}
                 target="_blank"
@@ -136,12 +151,17 @@ const Hero = () => {
               href={heroData.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-            >               
+            >
               LinkedIn
             </a>
           </Button>
           <div className="relative group">
-            <Button variant="outline" size="icon" className="rounded-full group-hover:tooltip" aria-label="Mail">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full group-hover:tooltip"
+              aria-label="Mail"
+            >
               <a
                 href={`mailto:${heroData.contact.email}`}
                 target="_blank"

@@ -1,3 +1,6 @@
+# docker run -p 4321:4321 astro-portfolio (Pour lancer le conteneur)
+# docker build -t astro-portfolio .      (Pour construire l'image)
+
 # Stage 1: Build the Astro site
 # Utilise une image Node.js légère pour builder le site Astro
 FROM node:20-alpine AS builder
