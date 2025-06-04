@@ -7,6 +7,7 @@ export const config = {
   favicon: '/favicon.svg',
   social: {
     linkedin: 'https://www.linkedin.com/in/beni-valerien-82a443345?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    github: 'https://github.com/Beni706'
+    github: 'https://github.com/Beni706',
+    twitter: 'VotreNomTwitter' // Ajoutez votre nom d'utilisateur Twitter ici (sans le @)
   }
 };
