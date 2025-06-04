@@ -2,7 +2,7 @@ export const heroData = {
   name: 'BIDOUNDA Beni Valérien',
   title: 'Developpeur Backend',
   description: "Animé par le défi de construire des systèmes backend performants et évolutifs, je suis un développeur passionné spécialisé dans l'optimisation des processus et la conception d'API intuitives.",
-  profilePicture: 'https://example.com/profilepic.jpg',
+  profilePicture: '../../public/profil2.jpg',
   skills: [
     'JavaScript',
     'Node.js',
